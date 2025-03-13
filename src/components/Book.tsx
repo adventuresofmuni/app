@@ -719,11 +719,11 @@ const Book = () => {
     position: 'relative',
   }
 
-  const { width, height } = useWindowSize()
+  const { width } = useWindowSize()
   const baseWidth = 1920
   const baseHeight = 1080
-  const scale = Math.min(width / baseWidth, height / baseHeight)
-
+  const flipbookWidth = Math.min(width * 0.9, baseWidth)
+  const scale = flipbookWidth / baseWidth
   return (
     <div className="relative w-full h-full flex justify-center items-center">
       <button
@@ -750,7 +750,7 @@ const Book = () => {
             width: baseWidth,
             height: baseHeight,
             transform: `scale(${scale})`,
-            transformOrigin: 'center',
+            transformOrigin: 'center center',
           }}
         >
           {/* @ts-expect-error */}
