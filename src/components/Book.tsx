@@ -56,6 +56,7 @@ import Page_5R_2 from './CLOUD/5R_2/Page_5R_2'
 import Page_3O from './FLOWER/3O/Page_3O'
 import Page_6D from './SCHOOL/6D/Page_6D'
 import Page_6E from './SCHOOL/6E/Page_6E'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
 // Define which pages should have which audio tracks
 const audioMap: { [key: number]: { loop: string[]; once: string[] } } = {
@@ -718,6 +719,12 @@ const Book = () => {
     position: 'relative',
   }
 
+  const { width, height } = useWindowSize()
+
+  // Calculate flipbook dimensions dynamically
+  const flipbookWidth = Math.min(width * 0.9, 1600) // 90% of screen width or max 1600px
+  const flipbookHeight = flipbookWidth * (963 / 1600) // maintain aspect ratio (963/1600)
+
   return (
     <div className="relative w-full h-full flex justify-center items-center">
       <button
@@ -745,12 +752,12 @@ const Book = () => {
           showCover={false}
           onChangeState={(stateObj) => handleFlipStateChange(stateObj.data)}
           flippingTime={600}
-          width={1600}
-          height={963}
+          width={flipbookWidth}
+          height={flipbookHeight}
           maxShadowOpacity={0.5}
           onFlip={onFlip}
           onInit={onInit}
-          startPage={44}
+          startPage={0}
           className="demo-book"
           disableFlipByClick={false}
           useMouseEvents={false}
