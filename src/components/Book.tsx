@@ -719,11 +719,10 @@ const Book = () => {
     position: 'relative',
   }
 
-  const { width } = useWindowSize()
-  const baseWidth = 1600
-  const baseHeight = 963
-  const flipbookWidth = Math.min(width * 0.9, baseWidth)
-  const scale = flipbookWidth / baseWidth
+  const { width, height } = useWindowSize()
+  const baseWidth = 1920
+  const baseHeight = 1080
+  const scale = Math.min(width / baseWidth, height / baseHeight)
 
   return (
     <div className="relative w-full h-full flex justify-center items-center">
@@ -751,7 +750,7 @@ const Book = () => {
             width: baseWidth,
             height: baseHeight,
             transform: `scale(${scale})`,
-            transformOrigin: 'top left',
+            transformOrigin: 'center',
           }}
         >
           {/* @ts-expect-error */}
