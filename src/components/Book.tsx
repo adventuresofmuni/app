@@ -712,21 +712,19 @@ const Book = () => {
     }
   }
 
-  // Disable pointer events on the flipbook container when the mini game is active.
-  const containerStyle: CSSProperties = {
-    pointerEvents: showMiniGame ? 'none' : 'auto',
-    // pointerEvents: 'none',
-    position: 'relative',
-  }
+  const { width, height } = useWindowSize()
 
-  const { width } = useWindowSize()
-  const baseWidth = 1920
-  const baseHeight = 1080
-  const flipbookWidth = Math.min(width * 0.9, baseWidth)
+  const baseWidth = 1600
+  const baseHeight = 963
+
+  const flipbookWidth = Math.min(width * 0.8, baseWidth)
   const scale = flipbookWidth / baseWidth
+
+  const containerStyle: React.CSSProperties = {}
+
   return (
     <div className="relative w-full h-full flex justify-center items-center">
-      <div style={containerStyle} className="relative">
+      <div style={containerStyle}>
         <div
           style={{
             width: baseWidth,
@@ -762,8 +760,8 @@ const Book = () => {
             showCover={false}
             onChangeState={(stateObj) => handleFlipStateChange(stateObj.data)}
             flippingTime={600}
-            width={baseWidth}
-            height={baseHeight}
+            width={1600}
+            height={963}
             maxShadowOpacity={0.5}
             onFlip={onFlip}
             onInit={onInit}
