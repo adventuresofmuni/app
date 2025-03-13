@@ -712,13 +712,11 @@ const Book = () => {
     }
   }
 
-  const { width, height } = useWindowSize()
+  const { width: windowWidth, height: windowHeight } = useWindowSize()
 
   const baseWidth = 1600
   const baseHeight = 963
-
-  const flipbookWidth = Math.min(width, baseWidth)
-  const scale = flipbookWidth / baseWidth
+  const scale = Math.min(windowWidth / baseWidth, windowHeight / baseHeight)
 
   const containerStyle: React.CSSProperties = {}
 
@@ -798,7 +796,7 @@ const Book = () => {
             <Page_3K onFlipNext={turnToNextPage} />
             <Page_3L page={page} onFlipNext={turnToNextPage} />
             <Page_3MN page={page} onFlipNext={flipToNextPage} />
-            <Page_3O onFlipNext={flipToNextPage} />
+            <Page_3O scale={scale} onFlipNext={flipToNextPage} />
             <Page_3P
               pathsDone={Object.values(pathsDone)}
               onFlipNext={(page) => {
