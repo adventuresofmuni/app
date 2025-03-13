@@ -796,7 +796,7 @@ const Book = () => {
             <Page_3K onFlipNext={turnToNextPage} />
             <Page_3L page={page} onFlipNext={turnToNextPage} />
             <Page_3MN page={page} onFlipNext={flipToNextPage} />
-            <Page_3O scale={scale} onFlipNext={flipToNextPage} />
+            <Page_3O onFlipNext={flipToNextPage} />
             <Page_3P
               pathsDone={Object.values(pathsDone)}
               onFlipNext={(page) => {
