@@ -726,24 +726,6 @@ const Book = () => {
   const scale = flipbookWidth / baseWidth
   return (
     <div className="relative w-full h-full flex justify-center items-center">
-      <button
-        className={`absolute w-[120px] bottom-4 m-6 left-4 z-50 focus:outline-none 
-    transition-transform duration-300 hover:scale-110 hover:opacity-80 
-    active:scale-90 active:opacity-60 ${hideButtons ? 'hidden' : ''}`}
-        onClick={flipToPrevPage}
-      >
-        <img src={arrow} className="transform -scale-x-100" alt="previous" />
-      </button>
-
-      <button
-        className={`absolute w-[120px] bottom-4 m-6 right-4 z-50 focus:outline-none 
-    transition-transform duration-300 hover:scale-110 hover:opacity-80 
-    active:scale-90 active:opacity-60 ${hideButtons ? 'hidden' : ''}`}
-        onClick={handleNextButton}
-      >
-        <img src={arrow} alt="next" />
-      </button>
-
       <div style={containerStyle} className="relative">
         <div
           style={{
@@ -753,6 +735,27 @@ const Book = () => {
             transformOrigin: 'center center',
           }}
         >
+          <button
+            className={`absolute w-[120px] bottom-4 m-6 left-4 z-50 focus:outline-none 
+    transition-transform duration-300 hover:scale-110 hover:opacity-80 
+    active:scale-90 active:opacity-60 ${hideButtons ? 'hidden' : ''}`}
+            onClick={flipToPrevPage}
+          >
+            <img
+              src={arrow}
+              className="transform -scale-x-100"
+              alt="previous"
+            />
+          </button>
+
+          <button
+            className={`absolute w-[120px] bottom-4 m-6 right-4 z-50 focus:outline-none 
+    transition-transform duration-300 hover:scale-110 hover:opacity-80 
+    active:scale-90 active:opacity-60 ${hideButtons ? 'hidden' : ''}`}
+            onClick={handleNextButton}
+          >
+            <img src={arrow} alt="next" />
+          </button>
           {/* @ts-expect-error */}
           <HTMLFlipBook
             ref={flipBookRef}
