@@ -717,7 +717,7 @@ const Book = () => {
   const baseWidth = 1600
   const baseHeight = 963
 
-  const flipbookWidth = Math.min(width * 0.8, baseWidth)
+  const flipbookWidth = Math.min(width, baseWidth)
   const scale = flipbookWidth / baseWidth
 
   const containerStyle: React.CSSProperties = {}
