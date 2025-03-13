@@ -537,8 +537,8 @@ const Book = () => {
 
   // multiple state of isFlowerDone, isFishDone, isCloudDone
   const [pathsDone, setPathsDone] = useState({
-    flower: true,
-    fish: true,
+    flower: false,
+    fish: false,
     cloud: false,
   })
 
@@ -719,11 +719,11 @@ const Book = () => {
     position: 'relative',
   }
 
-  const { width, height } = useWindowSize()
-
-  // Calculate flipbook dimensions dynamically
-  const flipbookWidth = Math.min(width * 0.9, 1600) // 90% of screen width or max 1600px
-  const flipbookHeight = flipbookWidth * (963 / 1600) // maintain aspect ratio (963/1600)
+  const { width } = useWindowSize()
+  const baseWidth = 1600
+  const baseHeight = 963
+  const flipbookWidth = Math.min(width * 0.9, baseWidth)
+  const scale = flipbookWidth / baseWidth
 
   return (
     <div className="relative w-full h-full flex justify-center items-center">
@@ -746,109 +746,118 @@ const Book = () => {
       </button>
 
       <div style={containerStyle} className="relative">
-        {/* @ts-expect-error */}
-        <HTMLFlipBook
-          ref={flipBookRef}
-          showCover={false}
-          onChangeState={(stateObj) => handleFlipStateChange(stateObj.data)}
-          flippingTime={600}
-          width={flipbookWidth}
-          height={flipbookHeight}
-          maxShadowOpacity={0.5}
-          onFlip={onFlip}
-          onInit={onInit}
-          startPage={0}
-          className="demo-book"
-          disableFlipByClick={false}
-          useMouseEvents={false}
-          mobileScrollSupport={false}
-          showPageCorners={false}
+        <div
+          style={{
+            width: baseWidth,
+            height: baseHeight,
+            transform: `scale(${scale})`,
+            transformOrigin: 'top left',
+          }}
         >
-          {/* SCHOOL */}
-          <Page_1A page={page} startAudio={startAudio} />
-          <Page_1B page={page} onFlipNext={flipToNextPage} />
-          <Page_1C page={page} onFlipNext={flipToNextPage} />
-          {/* OUTDOOR */}
-          <Page_2A page={page} onFlipNext={flipToNextPage} />
-          <Page_2B page={page} onFlipNext={flipToNextPage} />
-          <PickPath
-            onFlipNext={(page) => {
-              flipToCertainPage(page)
-            }}
-            pathsDone={Object.values(pathsDone)}
-          />
+          {/* @ts-expect-error */}
+          <HTMLFlipBook
+            ref={flipBookRef}
+            showCover={false}
+            onChangeState={(stateObj) => handleFlipStateChange(stateObj.data)}
+            flippingTime={600}
+            width={baseWidth}
+            height={baseHeight}
+            maxShadowOpacity={0.5}
+            onFlip={onFlip}
+            onInit={onInit}
+            startPage={0}
+            className="demo-book"
+            disableFlipByClick={false}
+            useMouseEvents={false}
+            mobileScrollSupport={false}
+            showPageCorners={false}
+          >
+            {/* SCHOOL */}
+            <Page_1A page={page} startAudio={startAudio} />
+            <Page_1B page={page} onFlipNext={flipToNextPage} />
+            <Page_1C page={page} onFlipNext={flipToNextPage} />
+            {/* OUTDOOR */}
+            <Page_2A page={page} onFlipNext={flipToNextPage} />
+            <Page_2B page={page} onFlipNext={flipToNextPage} />
+            <PickPath
+              onFlipNext={(page) => {
+                flipToCertainPage(page)
+              }}
+              pathsDone={Object.values(pathsDone)}
+            />
 
-          {/* FLOWER */}
-          <Page_3A />
-          <Page_3B />
-          <Page_3C />
-          <Page_3D />
-          <Page_3E />
-          <Page_3F />
-          <Page_3G page={page} onFlipNext={turnToNextPage} />
-          <Page_3J page={page} onFlipNext={turnToNextPage} />
-          <Page_3K onFlipNext={turnToNextPage} />
-          <Page_3L page={page} onFlipNext={turnToNextPage} />
-          <Page_3MN page={page} onFlipNext={flipToNextPage} />
-          <Page_3O onFlipNext={flipToNextPage} />
-          <Page_3P
-            pathsDone={Object.values(pathsDone)}
-            onFlipNext={(page) => {
-              flipToCertainPage(page)
-            }}
-          />
+            {/* FLOWER */}
+            <Page_3A />
+            <Page_3B />
+            <Page_3C />
+            <Page_3D />
+            <Page_3E />
+            <Page_3F />
+            <Page_3G page={page} onFlipNext={turnToNextPage} />
+            <Page_3J page={page} onFlipNext={turnToNextPage} />
+            <Page_3K onFlipNext={turnToNextPage} />
+            <Page_3L page={page} onFlipNext={turnToNextPage} />
+            <Page_3MN page={page} onFlipNext={flipToNextPage} />
+            <Page_3O onFlipNext={flipToNextPage} />
+            <Page_3P
+              pathsDone={Object.values(pathsDone)}
+              onFlipNext={(page) => {
+                flipToCertainPage(page)
+              }}
+            />
 
-          {/* FISH */}
-          <Page_4A />
-          <Page_4B />
-          <Page_4C />
-          <Page_4D />
-          <Page_4E />
-          <Page_4F />
-          <Page_4G />
-          <Page_4H page={page} onFlipNext={turnToNextPage} />
-          <Page_4K page={page} onFlipNext={turnToNextPage} />
-          <Page_4L page={page} onFlipNext={turnToNextPage} />
-          <Page_4N page={page} onFlipNext={turnToNextPage} />
-          <Page_4O page={page} onFlipNext={flipToNextPage} />
-          <Page_4Q page={page} onFlipNext={flipToNextPage} />
-          <Page_4R
-            pathsDone={Object.values(pathsDone)}
-            onFlipNext={(page) => {
-              flipToCertainPage(page)
-            }}
-          />
+            {/* FISH */}
+            <Page_4A />
+            <Page_4B />
+            <Page_4C />
+            <Page_4D />
+            <Page_4E />
+            <Page_4F />
+            <Page_4G />
+            <Page_4H page={page} onFlipNext={turnToNextPage} />
+            <Page_4K page={page} onFlipNext={turnToNextPage} />
+            <Page_4L page={page} onFlipNext={turnToNextPage} />
+            <Page_4N page={page} onFlipNext={turnToNextPage} />
+            <Page_4O page={page} onFlipNext={flipToNextPage} />
+            <Page_4Q page={page} onFlipNext={flipToNextPage} />
+            <Page_4R
+              pathsDone={Object.values(pathsDone)}
+              onFlipNext={(page) => {
+                flipToCertainPage(page)
+              }}
+            />
 
-          {/* CLOUD */}
-          <Page_5A />
-          <Page_5B />
-          <Page_5C />
-          <Page_5D />
-          <Page_5E />
-          <Page_5F />
-          <Page_5G page={page} onFlipNext={turnToNextPage} />
-          <Page_5J page={page} onFlipNext={turnToNextPage} />
-          <Page_5K page={page} onFlipNext={turnToNextPage} />
-          <Page_5M page={page} onFlipNext={turnToNextPage} />
-          <Page_5N page={page} onFlipNext={turnToNextPage} />
-          <Page_5P onFlipNext={flipToNextPage} />
-          <Page_5Q onFlipNext={flipToNextPage} />
-          <Page_5R page={page} />
-          <Page_5R_2
-            pathsDone={Object.values(pathsDone)}
-            onFlipNext={(page) => {
-              flipToCertainPage(page)
-            }}
-          />
-          {/* ENDING */}
-          <Page_5S page={page} onFlipNext={flipToNextPage} />
+            {/* CLOUD */}
+            <Page_5A />
+            <Page_5B />
+            <Page_5C />
+            <Page_5D />
+            <Page_5E />
+            <Page_5F />
+            <Page_5G page={page} onFlipNext={turnToNextPage} />
+            <Page_5J page={page} onFlipNext={turnToNextPage} />
+            <Page_5K page={page} onFlipNext={turnToNextPage} />
+            <Page_5M page={page} onFlipNext={turnToNextPage} />
+            <Page_5N page={page} onFlipNext={turnToNextPage} />
+            <Page_5P onFlipNext={flipToNextPage} />
+            <Page_5Q onFlipNext={flipToNextPage} />
+            <Page_5R page={page} />
+            <Page_5R_2
+              pathsDone={Object.values(pathsDone)}
+              onFlipNext={(page) => {
+                flipToCertainPage(page)
+              }}
+            />
+            {/* ENDING */}
+            <Page_5S page={page} onFlipNext={flipToNextPage} />
 
-          <Page_6A page={page} onFlipNext={flipToNextPage} />
-          <Page_6B />
-          <Page_6C />
-          <Page_6D />
-          <Page_6E page={page} />
-        </HTMLFlipBook>
+            <Page_6A page={page} onFlipNext={flipToNextPage} />
+            <Page_6B />
+            <Page_6C />
+            <Page_6D />
+            <Page_6E page={page} />
+          </HTMLFlipBook>
+        </div>
         {/* Render the mini game modal when active */}
         {/* {showMiniGame && <MiniGameModal onClose={() => setShowMiniGame(false)} />} */}
       </div>
