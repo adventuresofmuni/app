@@ -70,6 +70,12 @@ const Page_3O = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
       e.stopPropagation()
     }
 
+    const { width: windowWidth, height: windowHeight } = useWindowSize()
+
+    const baseWidth = 1600
+    const baseHeight = 963
+    const scale = Math.min(windowWidth / baseWidth, windowHeight / baseHeight)
+
     const playFlowerDropAudio = () => {
       if (audio) {
         audio.pause()
@@ -97,8 +103,8 @@ const Page_3O = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
       if (!containerRect) return
 
       // Adjust coordinates to match dropRect reference
-      const adjustedX = data.x + containerRect.left
-      const adjustedY = data.y + containerRect.top
+      const adjustedX = data.x * scale + containerRect.left
+      const adjustedY = data.y * scale + containerRect.top
 
       console.log('Adjusted Position:', adjustedX, adjustedY)
       console.log(
@@ -110,7 +116,7 @@ const Page_3O = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
       )
 
       // 🔥 Increase drop area bounds (padding effect)
-      const padding = 40 // Adjust this value to fine-tune the feather effect
+      const padding = 40 * scale
       const expandedDropRect = {
         left: dropRect.left - padding,
         right: dropRect.right + padding,
@@ -173,11 +179,13 @@ const Page_3O = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
       setShowInstructions(false)
     }
 
-    const { width: windowWidth, height: windowHeight } = useWindowSize()
+    // Original position from base design
+    const baseDropTop = 765 // originally 765px
+    const baseDropWidth = 195 // originally 195px
 
-    const baseWidth = 1600
-    const baseHeight = 963
-    const scale = Math.min(windowWidth / baseWidth, windowHeight / baseHeight)
+    // Scaled positioning
+    const dropAreaTop = baseDropTop * scale
+    const dropAreaWidth = baseDropWidth * scale
 
     return (
       <div className="relative w-full h-full">
