@@ -26,8 +26,12 @@ const arms = 'assets/FLOWER/arms.png'
 const instructions = 'assets/FLOWER/3O/instructions.png'
 const instructions_tag = 'assets/FLOWER/3O/instructions_tag.png'
 
+const Page_3O_tag = 'assets/FLOWER/3O/Page_3O_tag.png'
+const Page_3O_eng = 'assets/FLOWER/3O/Page_3O_eng.png'
+
 import Draggable, { DraggableEvent } from 'react-draggable'
 import { useLanguage } from '@/hooks/LanguageContext'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
 const flowerDropAudio = 'audio/SFX/flower_drop.mp3'
 
@@ -169,6 +173,12 @@ const Page_3O = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
       setShowInstructions(false)
     }
 
+    const { width: windowWidth, height: windowHeight } = useWindowSize()
+
+    const baseWidth = 1600
+    const baseHeight = 963
+    const scale = Math.min(windowWidth / baseWidth, windowHeight / baseHeight)
+
     return (
       <div className="relative w-full h-full">
         <div className="flex items-center justify-center" ref={ref}>
@@ -190,13 +200,24 @@ const Page_3O = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
             </div>
           )}
           {/* Background */}
-          <img
-            className="object-cover w-full h-full"
-            sizes="100vw"
-            src={sky}
-            alt="background"
-          />
+          <div className="h-full w-full flex  justify-center">
+            <img
+              className="object-cover w-full h-full"
+              sizes="100vw"
+              src={sky}
+              alt="background"
+            />
 
+            <img
+              className="absolute object-contain p-8"
+              style={{
+                top: 24,
+                width: '70%',
+              }}
+              src={language === 'eng' ? Page_3O_eng : Page_3O_tag}
+              alt="dialogue"
+            />
+          </div>
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
             {/* Muni + arms container */}
             <div className="relative w-[500px] h-auto">
@@ -211,6 +232,7 @@ const Page_3O = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
 
           {flowers.map(({ id, x, y, img, imgM }) => (
             <Draggable
+              scale={scale}
               key={id}
               disabled={isFlowerDropped[id]}
               position={positions[id]}

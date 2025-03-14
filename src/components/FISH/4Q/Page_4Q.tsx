@@ -33,6 +33,9 @@ const tilapia_tag = 'assets/FISH/4Q/caught/tilapia_tag.png'
 const galunggong_tag = 'assets/FISH/4Q/caught/galung_tag.png'
 const lapulapu_tag = 'assets/FISH/4Q/caught/lapulapu_tag.png'
 
+const Page_4Q_eng = 'assets/FISH/4Q/Page_4Q_eng.png'
+const Page_4Q_tag = 'assets/FISH/4Q/Page_4Q_tag.png'
+
 import { useLanguage } from '@/hooks/LanguageContext'
 
 const fishCatchAudio = 'audio/SFX/fish_catch.mp3'
@@ -222,7 +225,7 @@ const Page_4Q = React.forwardRef<
         >
           {/* dialogue */}
           <img
-            className="absolute object-contain w-full h-full"
+            className="absolute object-contain w-full"
             style={{
               bottom: 0,
               width: '70%',
@@ -238,6 +241,16 @@ const Page_4Q = React.forwardRef<
           sizes="100vw"
           src={bg}
           alt="background"
+        />
+        <img
+          className="absolute object-contain p-8"
+          style={{
+            top: 36,
+            right: 36,
+            width: '40%',
+          }}
+          src={language === 'eng' ? Page_4Q_eng : Page_4Q_tag}
+          alt="dialogue"
         />
         <img
           className="absolute object-contain w-[20%]"

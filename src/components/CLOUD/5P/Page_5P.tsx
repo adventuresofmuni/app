@@ -13,6 +13,9 @@ const cloud5 = 'assets/CLOUD/5P/CLOUDS/cloud5.png'
 const cloud_dialogue_box_eng = 'assets/CLOUD/5P/cloud_dialogue_box_eng.png'
 const cloud_hit = 'assets/CLOUD/5P/cloud_hit.png'
 
+const Page_5P_eng = 'assets/CLOUD/5P/Page_5P_eng.png'
+const Page_5P_tag = 'assets/CLOUD/5P/Page_5P_tag.png'
+
 import { useLanguage } from '@/hooks/LanguageContext'
 
 // tagalog
@@ -20,6 +23,7 @@ const cloud_dialogue_box_tag = 'assets/CLOUD/5P/cloud_dialogue_box_tag.png'
 const cloud_hit_tag = 'assets/CLOUD/5P/cloud_hit_tag.png'
 // The pixelPerfectCollision function from above
 import { pixelPerfectCollision } from '@/utils/pixelCollision'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
 const cloudHitAudio = 'audio/SFX/cloud_hit.mp3'
 
@@ -39,8 +43,8 @@ const Page_5P = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
       () => [
         { id: 'cloud1', x: 1280, y: 600, width: '55%', img: cloud1 },
         { id: 'cloud2', x: 1100, y: 85, width: '30%', img: cloud2 },
-        { id: 'cloud3', x: 560, y: 420, width: '100%', img: cloud3 },
-        { id: 'cloud6', x: 800, y: 820, width: '100%', img: cloud3 },
+        { id: 'cloud3', x: 560, y: 480, width: '20%', img: cloud3 },
+        { id: 'cloud6', x: 800, y: 820, width: '70%', img: cloud3 },
         { id: 'cloud4', x: 20, y: 750, width: '30%', img: cloud4 },
         { id: 'cloud5', x: 40, y: 10, width: '40%', img: cloud5 },
         { id: 'cloud7', x: 1300, y: 820, width: '20%', img: cloud3 },
@@ -112,9 +116,14 @@ const Page_5P = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
     const startGame = () => {
       setShowInstructions(false)
     }
+    const { width: windowWidth, height: windowHeight } = useWindowSize()
+
+    const baseWidth = 1600
+    const baseHeight = 963
+    const scale = Math.min(windowWidth / baseWidth, windowHeight / baseHeight)
 
     return (
-      <div className="relative w-full h-full" ref={ref}>
+      <div className="relative w-full h-full overflow-hidden" ref={ref}>
         {showInstructions && (
           <div
             onClick={startGame}
@@ -137,7 +146,24 @@ const Page_5P = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
           </div>
         )}
 
-        <div className="flex items-center h-full w-full">
+        <div className="flex items-center w-full h-full ">
+          {/* Background */}
+          <img
+            className="object-cover h-full w-full"
+            src={bg}
+            alt="background"
+          />
+          <img
+            className="z-[1] absolute object-contain p-8"
+            style={{
+              top: 36,
+              right: 60,
+              width: '30%',
+            }}
+            src={language === 'eng' ? Page_5P_eng : Page_5P_tag}
+            alt="dialogue"
+          />
+
           {/* Finish Line Ref */}
           <div
             ref={finishLineRef}
@@ -148,12 +174,6 @@ const Page_5P = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
               right: 0,
             }}
           ></div>
-          {/* Background */}
-          <img
-            className="object-cover h-full w-full"
-            src={bg}
-            alt="background"
-          />
 
           {/* Clouds */}
           {clouds.map((cloud, index) => (
@@ -187,6 +207,7 @@ const Page_5P = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
           ))}
 
           <Draggable
+            scale={scale}
             key={dragKey}
             position={planePosition}
             onDrag={(e, data) => {
