@@ -179,14 +179,6 @@ const Page_3O = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
       setShowInstructions(false)
     }
 
-    // Original position from base design
-    const baseDropTop = 765 // originally 765px
-    const baseDropWidth = 195 // originally 195px
-
-    // Scaled positioning
-    const dropAreaTop = baseDropTop * scale
-    const dropAreaWidth = baseDropWidth * scale
-
     return (
       <div className="relative w-full h-full">
         <div className="flex items-center justify-center" ref={ref}>
