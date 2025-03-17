@@ -212,7 +212,7 @@ const Page_3O = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
               className="absolute object-contain p-8"
               style={{
                 top: 24,
-                width: '70%',
+                width: '50%',
               }}
               src={language === 'eng' ? Page_3O_eng : Page_3O_tag}
               alt="dialogue"

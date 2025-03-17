@@ -190,7 +190,7 @@ const Page_4Q = React.forwardRef<
 
     setClickCounts((prev) => {
       const newCount = (prev[id] || 0) + 1
-      if (newCount >= 10) {
+      if (newCount >= 5) {
         playAudio()
         setCaughtFish([...caughtFish, id])
         setTimeout(() => setClickCounts((prev) => ({ ...prev, [id]: 0 })), 0)
