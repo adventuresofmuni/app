@@ -16,7 +16,7 @@ const LanguageContext = createContext<LanguageContextProps | undefined>(
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [language, setLanguage] = useState<Language>('eng') // Default is English
+  const [language, setLanguage] = useState<Language>('tag') // Default is English
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>

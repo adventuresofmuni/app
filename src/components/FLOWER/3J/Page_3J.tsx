@@ -5,7 +5,7 @@ const d_option_a_eng = 'assets/FLOWER/3J/d_option_a_eng.png'
 const d_option_b_eng = 'assets/FLOWER/3J/d_option_b_eng.png'
 const d_answer_a_eng = 'assets/FLOWER/3J/d_answer_a_eng.png'
 const d_answer_b_eng = 'assets/FLOWER/3J/d_answer_b_eng.png'
-const d2 = 'assets/FLOWER/3G/d2.png'
+const d2 = 'assets/TD/TD_3.png'
 
 // tagalog
 const d_option_a_tag = 'assets/FLOWER/3J/d_option_a_tag.png'
@@ -103,7 +103,7 @@ const Page_3J = React.forwardRef<
           className="absolute object-contain"
           style={{
             left: 180,
-            bottom: language === 'eng' ? 310 : 290,
+            bottom: language === 'eng' ? 350 : 330,
             width: '40%',
           }}
           src={language === 'eng' ? d_answer_a_eng : d_answer_a_tag}
@@ -114,7 +114,11 @@ const Page_3J = React.forwardRef<
       {selectedChoice === 'B' && (
         <img
           className="absolute object-contain"
-          style={{ left: 190, bottom: 270, width: '38%' }}
+          style={{
+            left: 190,
+            bottom: language === 'eng' ? 320 : 310,
+            width: '38%',
+          }}
           src={language === 'eng' ? d_answer_b_eng : d_answer_b_tag}
           alt="Answer B"
         />

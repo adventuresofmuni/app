@@ -73,14 +73,14 @@ const audioMap: { [key: number]: { loop: string[]; once: string[] } } = {
       'audio/SFX/classroom_ambiance.mp3', // classroom ambience
       'audio/MUSIC/beginning.mp3', // music bed
     ], // Keep ambience
-    once: ['audio/SFX/dream_transition.mp3'], // Dream transition
+    once: [], // Dream transition
   },
   3: {
     loop: [
       'audio/SFX/outdoor_ambiance.wav', // outdoor ambience
       'audio/MUSIC/beginning.mp3', // music bed
     ], // Outside ambience
-    once: [],
+    once: ['audio/SFX/dream_transition.mp3'],
   },
   4: {
     loop: [

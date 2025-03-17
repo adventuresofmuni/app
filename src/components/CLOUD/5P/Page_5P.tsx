@@ -156,8 +156,8 @@ const Page_5P = React.forwardRef<HTMLDivElement, { onFlipNext: () => void }>(
           <img
             className="z-[1] absolute object-contain p-8"
             style={{
-              top: 36,
-              right: 60,
+              bottom: 280,
+              left: 20,
               width: '30%',
             }}
             src={language === 'eng' ? Page_5P_eng : Page_5P_tag}
