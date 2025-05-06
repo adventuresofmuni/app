@@ -13,6 +13,10 @@ const TD_3 = 'assets/TD/FISH/TD_3.png'
 const Page_4J_eng = 'assets/FISH/4H/Page_4J_eng.png'
 const Page_4J_tag = 'assets/FISH/4H/Page_4J_tag.png'
 
+// tap
+const tap_to_next = 'assets/tap_to_next.png'
+const tap = 'assets/tap.gif'
+
 import { useLanguage } from '@/hooks/LanguageContext'
 
 // Dialogue Audio
@@ -104,6 +108,28 @@ const Page_4H = React.forwardRef<
           sizes="100vw"
           src={dialogue[currentDialogue].bg}
           alt="background"
+        />
+        {/* tap to next */}
+        <img
+          className="absolute object-contain animate-fadeOut"
+          style={{
+            bottom: 30,
+            right: 730,
+            width: '10%',
+          }}
+          src={tap_to_next}
+          alt="tap to next"
+        />
+        {/* tap gif */}
+        <img
+          className="absolute object-contain animate-fadeInOut"
+          style={{
+            bottom: 30,
+            right: 800,
+            width: '10%',
+          }}
+          src={tap}
+          alt="tap to next"
         />
         {/* English Text */}
         <img

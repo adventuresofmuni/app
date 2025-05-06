@@ -14,6 +14,10 @@ const dialogueAudio: { [key: string]: string } = {
   d2: 'audio/DIALOGUES/OTTIE.mp3',
 }
 
+// tap
+const tap_to_next = 'assets/tap_to_next.png'
+const tap = 'assets/tap.gif'
+
 const Page_5S = React.forwardRef<
   HTMLDivElement,
   { page: number; onFlipNext: () => void }
@@ -89,6 +93,28 @@ const Page_5S = React.forwardRef<
           sizes="100vw"
           src={dialogue[currentDialogue].bg}
           alt="background"
+        />
+        {/* tap to next */}
+        <img
+          className="absolute object-contain animate-fadeOut"
+          style={{
+            bottom: 30,
+            right: 730,
+            width: '10%',
+          }}
+          src={tap_to_next}
+          alt="tap to next"
+        />
+        {/* tap gif */}
+        <img
+          className="absolute object-contain animate-fadeInOut"
+          style={{
+            bottom: 30,
+            right: 800,
+            width: '10%',
+          }}
+          src={tap}
+          alt="tap to next"
         />
         {/* English Text */}
         <img

@@ -5,6 +5,11 @@ const Page_3P_eng_done = 'assets/FLOWER/3P/Page_3P_eng_done.png'
 // tagalog
 const Page_3P_tag = 'assets/FLOWER/3P/Page_3P_tag.png'
 const Page_3P_tag_done = 'assets/FLOWER/3P/Page_3P_tag_done.png'
+
+// tap
+const tap_to_next = 'assets/tap_to_next.png'
+const tap = 'assets/tap.gif'
+
 import { useLanguage } from '@/hooks/LanguageContext'
 import React from 'react'
 const Page_3P = React.forwardRef<
@@ -42,6 +47,28 @@ const Page_3P = React.forwardRef<
             src={TD_O3}
             alt="background"
           />
+          {/* tap to next */}
+        <img
+          className="absolute object-contain animate-fadeOut"
+          style={{
+            bottom: 30,
+            right: 730,
+            width: '10%',
+          }}
+          src={tap_to_next}
+          alt="tap to next"
+        />
+        {/* tap gif */}
+        <img
+          className="absolute object-contain animate-fadeInOut"
+          style={{
+            bottom: 30,
+            right: 800,
+            width: '10%',
+          }}
+          src={tap}
+          alt="tap to next"
+        />
           {/* English Text */}
           <img
             className="absolute object-contain"

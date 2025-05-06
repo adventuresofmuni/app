@@ -18,6 +18,14 @@ export default {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        fadeOut:{
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+        fadeInOut: {
+          '0%, 100%': { opacity: '0' },
+          '50%': { opacity: '1' },
+        },
         upAndDown: {
           '0%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' },
@@ -42,6 +50,8 @@ export default {
       animation: {
         dolly: 'dollyZoom 10s ease-in-out forwards',
         fadein: 'fadeIn 0.5s ease-in 0.5s forwards',
+        fadeInOut: 'fadeInOut 2s ease-in-out infinite',
+        fadeOut: 'fadeOut 3s ease-in-out forwards',
         updown: 'upAndDown 2s ease-in-out infinite',
         cloud: 'cloud 4s ease-in-out infinite',
         cloud2: 'cloud2 2.5s ease-in-out infinite',

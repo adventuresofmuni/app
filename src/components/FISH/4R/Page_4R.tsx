@@ -8,6 +8,10 @@ const Page_4T_tag = 'assets/FISH/4R/Page_4T_tag.png'
 const Page_4T_tag_done = 'assets/FISH/4R/Page_4T_tag_done.png'
 import { useLanguage } from '@/hooks/LanguageContext'
 
+// tap
+const tap_to_next = 'assets/tap_to_next.png'
+const tap = 'assets/tap.gif'
+
 const Page_4R = React.forwardRef<
   HTMLDivElement,
   { onFlipNext?: (page: number) => void; pathsDone: boolean[] }
@@ -43,6 +47,28 @@ const Page_4R = React.forwardRef<
             src={TD_O2}
             alt="background"
           />
+          {/* tap to next */}
+        <img
+          className="absolute object-contain animate-fadeOut"
+          style={{
+            bottom: 30,
+            right: 730,
+            width: '10%',
+          }}
+          src={tap_to_next}
+          alt="tap to next"
+        />
+        {/* tap gif */}
+        <img
+          className="absolute object-contain animate-fadeInOut"
+          style={{
+            bottom: 30,
+            right: 800,
+            width: '10%',
+          }}
+          src={tap}
+          alt="tap to next"
+        />
           {/* English Text */}
           <img
             className="absolute object-contain"

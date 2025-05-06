@@ -58,6 +58,15 @@ import Page_6D from './SCHOOL/6D/Page_6D'
 import Page_6E from './SCHOOL/6E/Page_6E'
 import { useWindowSize } from '@/hooks/useWindowSize'
 
+//  Menu
+const menu_panel = 'assets/menu_panel.png'
+const menu_resume = 'assets/menu_resume.png'
+const menu_exit = 'assets/menu_exit.png'
+const menu_replay = 'assets/menu_replay.png'
+const menu_path = 'assets/menu_path.png'
+const menu_button = 'assets/menu_button.png'
+
+
 // Define which pages should have which audio tracks
 const audioMap: { [key: number]: { loop: string[]; once: string[] } } = {
   1: {
@@ -452,6 +461,13 @@ const Book = () => {
   const isFlippingRef = useRef(false)
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const handleMenuClick = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+
 
   //  PRE LOAD ASSETS PAGE
   const playFlipAudio = () => {
@@ -731,6 +747,87 @@ const Book = () => {
             transformOrigin: 'center center',
           }}
         >
+        {/* Menu isMenuOpen */}
+        {isMenuOpen && (
+          <div className="absolute inset-0 flex justify-center items-center z-50">
+            <img
+              src={menu_panel}
+              alt="Menu Panel"
+              className="absolute w-full h-full object-contain"
+            />
+            <div className="absolute" style={{ left: 300, width: 500 }}>
+              <img
+                src={menu_resume}
+                className='object-contain cursor-pointer transition-transform duration-200 ease-in-out 
+                        hover:scale-110 active:scale-90 active:opacity-60'
+                alt="Resume"
+                onClick={handleMenuClick} 
+              />
+            </div>
+            <div className="absolute" style={{ left: 800, width: 500 }}>
+              <img
+                src={menu_path}
+                className='object-contain cursor-pointer transition-transform duration-200 ease-in-out 
+                        hover:scale-110 active:scale-90 active:opacity-60'
+                alt="Resume"
+                onClick={() => {
+                  setIsMenuOpen(false)
+                  setTimeout(() => {
+                    flipToCertainPage(5)
+                  }
+                  , 200)
+                }}
+              />
+            </div>
+            <div className="absolute" style={{ bottom: 212, left: 300, width: 500 }}>
+              <img
+                src={menu_replay}
+                className='object-contain cursor-pointer transition-transform duration-200 ease-in-out 
+                        hover:scale-110 active:scale-90 active:opacity-60'
+                alt="Resume"
+                onClick={() => {
+                  setIsMenuOpen(false)
+                  setPathsDone({
+                    flower: false,
+                    fish: false,
+                    cloud: false,
+                  })
+                  setTimeout(() => {
+                    flipToCertainPage(0)
+                  }, 200)
+                }}
+              />
+            </div>
+            <div className="absolute" style={{ bottom: 210, left: 800, width: 480 }}>
+              <img
+                src={menu_exit}
+                className='object-contain cursor-pointer transition-transform duration-200 ease-in-out 
+                        hover:scale-110 active:scale-90 active:opacity-60'
+                alt="Resume"
+                onClick={() => {
+                //  go to link
+                window.open('https://www.adventuresofmuni.com', '_blank')
+                }}
+              />
+            </div>
+          </div>
+        )}
+        
+        {/* menu button */}
+        <button
+          className={`absolute w-[60px] opacity-85 m-6 ml-9 z-50 focus:outline-none
+    transition-transform duration-300 hover:scale-110
+    active:scale-90 hover:opacity-100`}
+          onClick={handleMenuClick}
+        >
+          <img
+            src={menu_button}
+            className="object-contain"
+            alt="menu"
+          />
+        </button>
+
+
           <button
             className={`absolute w-[120px] bottom-4 m-6 left-4 z-50 focus:outline-none 
     transition-transform duration-300 hover:scale-110 hover:opacity-80 

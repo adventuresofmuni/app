@@ -10,6 +10,10 @@ const Page_2A_tag1 = 'assets/OUTDOOR/2A/Page_2A_tag1.png'
 const Page_2A_tag2 = 'assets/OUTDOOR/2A/Page_2A_tag2.png'
 import { useLanguage } from '@/hooks/LanguageContext'
 
+// tap
+const tap_to_next = 'assets/tap_to_next.png'
+const tap = 'assets/tap.gif'
+
 const Page_2A = React.forwardRef<
   HTMLDivElement,
   { page: number; onFlipNext: () => void }
@@ -63,6 +67,28 @@ const Page_2A = React.forwardRef<
           sizes="100vw"
           src={dialogue[currentDialogue].bg}
           alt="background"
+        />
+                {/* tap to next */}
+                <img
+          className="absolute object-contain animate-fadeOut"
+          style={{
+            bottom: 400,
+            right: 340,
+            width: '10%',
+          }}
+          src={tap_to_next}
+          alt="tap to next"
+        />
+        {/* tap gif */}
+        <img
+          className="absolute object-contain animate-fadeInOut"
+          style={{
+            bottom: 400,
+            right: 340,
+            width: '10%',
+          }}
+          src={tap}
+          alt="tap to next"
         />
         {/* English Text */}
         <img

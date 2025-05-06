@@ -12,6 +12,10 @@ const Page_1B_tag2 = 'assets/SCHOOL/1B/Page_1B_tag2.png'
 const Page_1B_tag3 = 'assets/SCHOOL/1B/Page_1B_tag3.png'
 import { useLanguage } from '@/hooks/LanguageContext'
 
+// tap
+const tap_to_next = 'assets/tap_to_next.png'
+const tap = 'assets/tap.gif'
+
 const Page_1B = React.forwardRef<
   HTMLDivElement,
   { page: number; onFlipNext: () => void }
@@ -82,6 +86,28 @@ const Page_1B = React.forwardRef<
           className="absolute w-full h-full inset-0 object-cover"
           src={dialogue[currentDialogue].bg}
           alt="background"
+        />
+        {/* tap to next */}
+        <img
+          className="absolute object-contain animate-fadeOut"
+          style={{
+            bottom: 70,
+            right: 430,
+            width: '10%',
+          }}
+          src={tap_to_next}
+          alt="tap to next"
+        />
+        {/* tap gif */}
+        <img
+          className="absolute object-contain animate-fadeInOut"
+          style={{
+            bottom: 60,
+            right: 540,
+            width: '10%',
+          }}
+          src={tap}
+          alt="tap to next"
         />
         {/* English Text */}
         <img
